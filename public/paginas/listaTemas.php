@@ -7,7 +7,9 @@
     <title>COMUSOFT | Lista de Temas</title>
   </head>
   <body>
-    <?php include "menu.php";
+    <?php
+      session_start();
+      include "menu.php";
     require_once('../../app/conexionBD.php');
     $asignatura=0;
     if(!empty($_GET)){

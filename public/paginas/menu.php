@@ -4,21 +4,43 @@
       <img src="../imagenes/logo2b.png" alt="" width="120">
     </a>
     <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" href="crearAsignatura.php">
-          <img src="../imagenes/bookmark-plus.svg" height="30">
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="crearTema.php">
-          <img src="../imagenes/terminal-plus.svg" height="30">
-        </a>
-      </li>
+      <?php
+        if(empty($_SESSION['nombre'])){
+       ?>
       <li class="nav-item">
         <a class="nav-link" href="login.php">
           <img src="../imagenes/person-fill.svg" height="30">
         </a>
       </li>
+    <?php }
+        else{
+    ?>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          <img src="../imagenes/person-fill.svg" height="20"> <?php echo $_SESSION['nombre'] ?>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">MIS TEMAS</a></li>
+        <li><a class="dropdown-item" href="crearTema.php">
+              <img src="../imagenes/terminal-plus-black.svg" height="20"> NUEVO TEMA
+            </a>
+        </li>
+        <?php
+          if($_SESSION['perfil']=='ADMINISTRADOR'){
+        ?>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">LISTA ASIGNATURAS</a></li>
+        <li><a class="dropdown-item" href="crearAsignatura.php">
+          <img src="../imagenes/bookmark-plus-black.svg" height="20"> NUEVA ASIGNATURA</a>
+        </li>
+      <?php } ?>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="../../app/control/logout.php">
+        <img src="../imagenes/lock.svg" height="20"> CERRAR SESIÓN</a>
+        </li>
+      </ul>
+    </li>
+  <?php } ?>
     </ul>
   </div>
 </nav>

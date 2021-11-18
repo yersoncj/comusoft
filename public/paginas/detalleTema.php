@@ -7,7 +7,9 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body>
-    <?php include "menu.php";
+    <?php
+      session_start();
+      include "menu.php";
     $tema=0;
     if(!empty($_GET)){
       $tema=$_GET['tema'];
@@ -128,7 +130,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-success" onclick="location.href='listaTemas.php?asignatura=<?php echo($det['asignatura']) ?>'">VOLVER</button>
+          <button type="button" class="btn btn-secondary" onclick="location.href='listaTemas.php?asignatura=<?php echo($det['asignatura']) ?>'">VOLVER</button>
 
         </div>
       </div>

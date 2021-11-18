@@ -1,28 +1,37 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+  if(empty($_SESSION['nombre'])){
+    header("Location:../../index.php");
+  }
+?>
 <html lang="es" dir="ltr">
   <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../imagenes/ing_sistemas.jpg">
-    <title>COMUSOFT | Crear Tema</title>
+    <title>COMUSOFT | Nuevo Tema</title>
     <script src="../tinymce/tinymce.min.js"></script>
     <script src="../js/tinymce_editor.js"></script>
   </head>
   <body>
-    <?php include "menu.php"; ?>
+    <?php
+      include "menu.php";
+    ?>
     <div class="container" align="center" style="margin-top:50px">
-      <h1>CREAR NUEVO TEMA</h1>
-      <div class="alert alert-info">
+      <h1>NUEVO TEMA</h1>
+      <div class="alert alert-secondary col-8">
         Para crear un nuevo tema seleccione la asignatura, ingrese el contenido, las palabras claves y luego de clic en
         guardar, un administrador validará la información y luego será publicado.
       </div>
       <form class="" action="../../app/control/crearTema.php" method="post" name="nuevoTema" id="nuevoTema">
-        <div class="card">
+        <div class="card col-8">
           <div class="card-body">
             <div class="form-group" align="left">
               <a style="color:red" align="left">* </a><label >Título</label>
               <input type="text" class="form-control" name="titulo" id="titulo" required>
             </div>
+            <br>
             <div class="form-group" align="left">
               <a style="color:red" align="left">* </a><label for="asignatura" class="form-label">Asignatura</label>
               <select class="custom-select form-control" aria-label="Default select example" id="asignatura" name="asignatura" required>
@@ -37,17 +46,19 @@
               mysqli_close($con); // cierro conexion?>
               </select>
             </div>
+            <br>
             <div class="form-group" align="left">
               <a style="color:red" align="left">* </a><label for="contenido" class="form-label">Contenido</label>
               <textarea name="contenido" id="contenido" rows="20" cols="80" class="form-control">
               </textarea>
             </div>
+            <br>
             <div class="form-group" align="left">
               <a style="color:red" align="left">* </a><label >Palabras clave</label>
               <input type="text" class="form-control" name="palabras_clave" id="palabras_clave" required>
             </div>
             <br>
-            <div class="alert alert-info">
+            <div class="alert alert-secondary">
               Si desea agregar un video de Youtube a su tema por favor solo agregue los 11 caracteres de identificacion del video para su correcta visualización.
             </div>
             <div class="form-group" align="left">
@@ -55,7 +66,7 @@
               <input type="text" class="form-control" name="video" id="video">
             </div>
             <br>
-            <div class="alert alert-info">
+            <div class="alert alert-secondary">
               Si desea agregar un repositorio de GitHub por favor agregue la url, recuerde que debe ser un repositorio público para que todos pueden acceder a él.
             </div>
             <div class="form-group" align="left">
@@ -63,7 +74,7 @@
               <input type="url" class="form-control" name="github" id="github">
             </div>
             <br>
-            <div class="alert alert-info">
+            <div class="alert alert-secondary">
               Si desea agregar un libro o documento virtual por favor ingrese la url, recuerde que debe ser un documento público para que todos pueden acceder a él.
             </div>
             <div class="form-group" align="left">
@@ -71,7 +82,7 @@
               <input type="url" class="form-control" name="libro" id="libro">
             </div>
             <br>
-            <div class="alert alert-info">
+            <div class="alert alert-secondary">
               Si desea puede agregar dos enlaces de interes que le ayuden a complementar el tema.
             </div>
             <div class="form-group" align="left">
@@ -84,8 +95,8 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="button" class="btn btn-danger" onclick="location.href='../../index.php'">CANCELAR</button>
-            <button type="submit" class="btn btn-success " form="nuevoTema">GUARDAR</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='../../index.php'">CANCELAR</button>
+            <button type="submit" class="btn btn-danger " form="nuevoTema">GUARDAR</button>
           </div>
         </div>
       </form>

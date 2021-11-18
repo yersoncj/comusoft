@@ -6,27 +6,50 @@
     <title>COMUSOFT</title>
   </head>
   <body>
+    <?php session_start(); ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-danger fixed-top">
       <div class="container">
         <a class="navbar-brand" href="index.php">
           <img src="public/imagenes/logo2b.png" alt="" width="140">
         </a>
         <ul class="nav justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link" href="public/paginas/crearAsignatura.php">
-              <img src="public/imagenes/bookmark-plus.svg" height="30">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="public/paginas/crearTema.php">
-              <img src="public/imagenes/terminal-plus.svg" height="30">
-            </a>
-          </li>
+          <?php
+            if(empty($_SESSION['nombre'])){
+           ?>
           <li class="nav-item">
             <a class="nav-link" href="public/paginas/login.php">
               <img src="public/imagenes/person-fill.svg" height="30">
             </a>
           </li>
+        <?php }
+            else{
+        ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <img src="public/imagenes/person-fill.svg" height="20"> <?php echo $_SESSION['nombre'] ?>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">MIS TEMAS</a></li>
+            <li><a class="dropdown-item" href="public/paginas/crearTema.php">
+                  <img src="public/imagenes/terminal-plus-black.svg" height="20"> NUEVO TEMA
+                </a>
+            </li>
+            <?php
+              if($_SESSION['perfil']=='ADMINISTRADOR'){
+            ?>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">LISTA ASIGNATURAS</a></li>
+            <li><a class="dropdown-item" href="public/paginas/crearAsignatura.php">
+              <img src="public/imagenes/bookmark-plus-black.svg" height="20"> NUEVA ASIGNATURA</a>
+            </li>
+          <?php } ?>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="app/control/logout.php">
+              <img src="public/imagenes/lock.svg" height="20"> CERRAR SESIÓN</a>
+            </li>
+          </ul>
+        </li>
+      <?php } ?>
         </ul>
       </div>
     </nav>
@@ -56,7 +79,6 @@
       </div>
       <br>
       <?php
-      session_start();
       if(!empty($_SESSION["mensaje"])){
         echo"<div class='alert alert-success'>".$_SESSION["mensaje"]."</div><br>";
         $_SESSION["mensaje"]="";
@@ -66,41 +88,36 @@
         $_SESSION["mensajeError"]="";
       }
        ?>
-      <div class="alert alert-info" align="center">
+      <div class="alert alert-secondary" align="center">
         COMUNIDAD DE PRÁCTICA DE INGENIERÍA DE SISTEMAS DE LA U.F.P.S COMUSOFT
         <br> <small><i>UN ESPACIO PARA COMPARTIR CONOCIMIENTO CON TODOS LOS ESTUDIANTES DE INGENIERÍA DE SISTEMAS
         Y CREAR UNA COMUNIDAD VIRTUAL</i></small>
       </div>
-      <div class="row row-cols-1 row-cols-md-4">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
         <?php
           require_once('app/conexionBD.php');
           include ("app/modelo/listaAsignaturas.php");
+          $cont=0;
           while($det= mysqli_fetch_array($resultAsignaturas)){
-            $d=mt_rand(1,4);
+            $cont++;
          ?>
         <div class="col">
-          <div class="card text-white
-          <?php
-          if($d==1){
-            echo("bg-warning");
-          }
-          else if($d==2){
-            echo("bg-danger");
-          }
-          else if($d==3){
-            echo("bg-info");
-          }
-          else if($d==4){
-            echo("bg-success");
-          }
-          ?>
-          mb-3" style="max-width: 18rem;">
-            <div class="card-header"><?php echo($det['nombre']); ?></div>
+          <div class="card h-100  mb-3" style="max-width: 18rem;">
+            <div class="card-header text-white
+              <?php
+                if($cont%2==0)
+                  echo"bg-danger";
+                else
+                  echo"bg-secondary";
+               ?>
+            "><?php echo($det['nombre']); ?></div>
             <div class="card-body">
               <h5 class="card-title"><?php echo($det['codigo']); ?></h5>
               <h5 class="card-title">SEMESTRE <?php echo($det['semestre']); ?></h5>
               <p class="card-text"><?php echo($det['descripcion']); ?></p>
-              <a href="public/paginas/listaTemas.php?asignatura=<?php echo($det['id']); ?>" class="btn btn-light" name="button" >VER TEMAS</a>
+            </div>
+            <div class="card-footer">
+              <a href="public/paginas/listaTemas.php?asignatura=<?php echo($det['id']); ?>" class="btn btn-danger" name="button" >VER TEMAS</a>
             </div>
           </div>
         </div>
@@ -110,29 +127,28 @@
          ?>
       </div>
     </div>
-    <br>
-    <br>
-    <div class="footer-copyright white text-secondary">
-      <div class="container" align="center">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <hr color="orange" />
+    <br><br>
+    <div class=" text-secondary bg-light">
+      <hr>
+      <div class="" align="center">
+        <div class="col-6">
           Copyright © 2021 UFPS - Todos los Derechos Reservados
           <br>
-          Desarrollado por: YERSON - CAMILO - JESUS
+          Desarrollado por: YERSON CARMONA- CAMILO BOTELLO- JESUS SUAREZ
           <br>
           Versión: 1.0
           <br>
-          -----
         </div>
+        <div class="col-6">
+          <a href="https://ingsistemas.cloud.ufps.edu.co/" target="_blank" class="">
+            <img src="public/imagenes/logo_vertical_ingsistemas.png" height="50">
+          </a>
+          <a href="https://ww2.ufps.edu.co/" target="_blank" class="col-4">
+            <img src="public/imagenes/logo_ufps.png" height="40">
+          </a>
+        </div>
+        <br>
       </div>
-    </div>
-    <div class="bg-light" align="center">
-      <a href="https://ww2.ufps.edu.co/" target="_blank" class="col-4">
-        <img src="public/imagenes/logo_ufps.png" height="60">
-      </a>
-      <a href="https://ingsistemas.cloud.ufps.edu.co/" target="_blank" class="col-4 offset-4">
-        <img src="public/imagenes/logo_vertical_ingsistemas.png" height="60">
-      </a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
