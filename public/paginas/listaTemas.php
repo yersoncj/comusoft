@@ -18,13 +18,19 @@
     include "../../app/modelo/consultaAsignatura.php";
     ?>
     <div class="container" align="center" style="margin-top:50px">
+      <?php if(!empty($asignatura)) {?>
       <h3 class="text-danger">TEMAS DE
         <?php
           if($det= mysqli_fetch_array($resultAsignatura)){
             echo($det['nombre']) ;
           }
-        ?>
+          ?>
       </h3>
+      <?php
+          }
+          else { ?>
+        <h3 class="text-danger">TODOS LOS TEMAS</h3>
+      <?php } ?>
       <div class="">
         <table id="temas" class="table table-striped table-bordered" style="width:100%">
           <thead>
@@ -68,5 +74,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+      $('#temas').dataTable( {
+          "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+          },
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+      } );
+    </script>
   </body>
 </html>

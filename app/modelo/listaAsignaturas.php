@@ -2,9 +2,11 @@
 
 
 
-$consultaAsignatura = "select *
-                         FROM   asignatura as a
-                         WHERE  a.estado = 'ACTIVA'";
+$consultaAsignatura = "select a.nombre,a.codigo,a.semestre,a.descripcion,a.id,
+                        count(t.id) as temas
+                         FROM   asignatura as a INNER JOIN tema t ON a.id = t.asignatura
+                         WHERE  a.estado = 'ACTIVA'
+                         GROUP BY a.nombre ORDER BY a.semestre";
 
 $resultAsignaturas = mysqli_query($con,$consultaAsignatura);
 

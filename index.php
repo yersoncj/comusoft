@@ -13,6 +13,11 @@
           <img src="public/imagenes/logo2b.png" alt="" width="140">
         </a>
         <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="public/paginas/listaTemas.php">
+              <img src="public/imagenes/search.svg" height="30">
+            </a>
+          </li>
           <?php
             if(empty($_SESSION['nombre'])){
            ?>
@@ -50,7 +55,7 @@
           </ul>
         </li>
       <?php } ?>
-      
+
         </ul>
       </div>
     </nav>
@@ -117,8 +122,13 @@
               <h5 class="card-title">SEMESTRE <?php echo($det['semestre']); ?></h5>
               <p class="card-text"><?php echo($det['descripcion']); ?></p>
             </div>
-            <div class="card-footer">
-              <a href="public/paginas/listaTemas.php?asignatura=<?php echo($det['id']); ?>" class="btn btn-danger" name="button" >VER TEMAS</a>
+            <div class="card-footer" align="right">
+              <a style="margin-top:10px" href="public/paginas/listaTemas.php?asignatura=<?php echo($det['id']); ?>" class="btn btn-danger position-relative" name="button" >
+                VER TEMAS <span class="badge rounded-pill bg-white text-danger position-absolute top-0 start-100 translate-middle border border-dark">
+                              <?php echo($det['temas']); ?>
+                              <span class="visually-hidden">unread messages</span>
+                            </span>
+              </a>
             </div>
           </div>
         </div>

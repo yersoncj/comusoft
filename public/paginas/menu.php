@@ -4,6 +4,11 @@
       <img src="../imagenes/logo2b.png" alt="" width="120">
     </a>
     <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" href="listaTemas.php">
+          <img src="../imagenes/search.svg" height="30">
+        </a>
+      </li>
       <?php
         if(empty($_SESSION['nombre'])){
        ?>

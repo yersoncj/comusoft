@@ -1,11 +1,17 @@
 <?php
 
+if(!empty($asignatura)){
+  $consultaTema = "select *
+                           FROM   tema as a
+                           WHERE  a.estado = 'ACTIVO'
+                           and a.asignatura=$asignatura";
+}
+else{
+  $consultaTema = "select *
+                           FROM   tema as a
+                           WHERE  a.estado = 'ACTIVO'";
+}
 
-
-$consultaTema = "select *
-                         FROM   tema as a
-                         WHERE  a.estado = 'ACTIVO'
-                         and a.asignatura=$asignatura";
 
 $resultTema = mysqli_query($con,$consultaTema);
 
