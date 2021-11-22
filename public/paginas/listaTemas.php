@@ -33,7 +33,7 @@
       <?php } ?>
       <div class="">
         <table id="temas" class="table table-striped table-bordered" style="width:100%">
-          <thead>
+          <thead class="bg-secondary text-white">
             <tr>
               <th>TÍTULO</th>
               <th>FECHA DE PUBLICACIÓN</th>
@@ -57,7 +57,7 @@
                 }
               ?>
           </tbody>
-          <tfoot>
+          <tfoot class="bg-secondary text-white">
               <tr>
                 <th>TÍTULO</th>
                 <th>FECHA DE PUBLICACIÓN</th>

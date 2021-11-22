@@ -13,9 +13,13 @@
     ?>
     <div class="container" style="margin-top:50px" align="center">
       <h3 class="text-danger">REGISTRO DE USUARIOS</h3>
-      <form>
+      <form action="../../app/control/registrarUsuario.php" method="post">
         <div class="card col-6">
           <div class="card-body">
+            <div class="mb-3" align="left">
+              <a style="color:red" align="left">* </a><label for="nombre" class="form-label">Nombre</label>
+              <input type="password" class="form-control" id="nombre">
+            </div>
             <div class="mb-3" align="left">
               <a style="color:red" align="left">* </a><label for="exampleInputEmail1" class="form-label">Dirección de correo</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -32,7 +36,7 @@
           </div>
           <div class="card-footer">
             <button type="button" class="btn btn-secondary" onclick="location.href='../../index.php'">CANCELAR</button>
-            <button type="submit" class="btn btn-danger " form="login">REGISTRAR</button>
+            <button type="submit" class="btn btn-danger " >REGISTRAR</button>
           </div>
         </div>
       </form>
