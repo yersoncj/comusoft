@@ -25,19 +25,34 @@
           <img src="../imagenes/person-fill.svg" height="20"> <?php echo $_SESSION['nombre'] ?>
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">MIS TEMAS</a></li>
-        <li><a class="dropdown-item" href="crearTema.php">
-              <img src="../imagenes/terminal-plus-black.svg" height="20"> NUEVO TEMA
-            </a>
-        </li>
+        <?php
+          if($_SESSION['perfil']=='ADMINISTRADOR'){
+        ?>
+        <li><a class="dropdown-item" href="aprobarTemas.php">
+          <img src="../imagenes/journal-check.svg" height="20"> APROBAR TEMAS
+        </a></li>
+      <?php }else {
+       ?>
+       <li><a class="dropdown-item" href="misTemas.php">
+         <img src="../imagenes/folder2.svg" height="20"> MIS TEMAS
+       </a></li>
+       <li><a class="dropdown-item" href="crearTema.php">
+             <img src="../imagenes/terminal-plus-black.svg" height="20"> NUEVO TEMA
+           </a>
+       </li>
+     <?php } ?>
+
         <?php
           if($_SESSION['perfil']=='ADMINISTRADOR'){
         ?>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">LISTA ASIGNATURAS</a></li>
+        <li><a class="dropdown-item" href="#">LISTA DE ASIGNATURAS</a></li>
         <li><a class="dropdown-item" href="crearAsignatura.php">
           <img src="../imagenes/bookmark-plus-black.svg" height="20"> NUEVA ASIGNATURA</a>
         </li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="listaUsuarios.php">
+          <img src="../imagenes/person-list.svg" height="20"> LISTA DE USUARIOS</a></li>
       <?php } ?>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="../../app/control/logout.php">

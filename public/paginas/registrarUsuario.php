@@ -13,25 +13,34 @@
     ?>
     <div class="container" style="margin-top:50px" align="center">
       <h3 class="text-danger">REGISTRO DE USUARIOS</h3>
-      <form action="../../app/control/registrarUsuario.php" method="post">
+      <form action="../../app/control/crearUsuario.php" method="post">
         <div class="card col-6">
           <div class="card-body">
             <div class="mb-3" align="left">
               <a style="color:red" align="left">* </a><label for="nombre" class="form-label">Nombre</label>
-              <input type="password" class="form-control" id="nombre">
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
             <div class="mb-3" align="left">
-              <a style="color:red" align="left">* </a><label for="exampleInputEmail1" class="form-label">Dirección de correo</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <a style="color:red" align="left">* </a><label for="correo" class="form-label">Dirección de correo</label>
+              <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>
               <div id="emailHelp" class="form-text">Recuerde que para poder registrarse debe contar con una dirección de correo del dominio institucional @ufps.edu.co.</div>
             </div>
             <div class="mb-3" align="left">
-              <a style="color:red" align="left">* </a><label for="exampleInputPassword1" class="form-label">Clave</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <a style="color:red" align="left">* </a><label for="clave" class="form-label">Clave</label>
+              <input type="password" class="form-control" id="clave" name="clave" required>
             </div>
             <div class="mb-3" align="left">
-              <a style="color:red" align="left">* </a><label for="exampleInputPassword1" class="form-label">Confirme la clave</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <a style="color:red" align="left">* </a><label for="clave2" class="form-label">Confirme la clave</label>
+              <input type="password" class="form-control" id="clave2" required>
+            </div>
+            <div class="mb-3" style="text-align:left">
+              <a style="color:red" align="left">* </a><label for="perfil" class="form-label">Perfil</label>
+              <select class="custom-select form-control" aria-label="Default select example" id="perfil" name="perfil" required>
+                <option value="" selected>Seleccione un estado</option>
+                <option >ESTUDIANTE</option>
+                <option >DOCENTE</option>
+                <option >EGRESADO</option>
+              </select>
             </div>
           </div>
           <div class="card-footer">

@@ -34,19 +34,34 @@
               <img src="public/imagenes/person-fill.svg" height="20"> <?php echo $_SESSION['nombre'] ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">MIS TEMAS</a></li>
-            <li><a class="dropdown-item" href="public/paginas/crearTema.php">
-                  <img src="public/imagenes/terminal-plus-black.svg" height="20"> NUEVO TEMA
-                </a>
-            </li>
+            <?php
+              if($_SESSION['perfil']=='ADMINISTRADOR'){
+            ?>
+            <li><a class="dropdown-item" href="public/paginas/aprobarTemas.php">
+              <img src="public/imagenes/journal-check.svg" height="20"> APROBAR TEMAS
+            </a></li>
+          <?php }else {
+           ?>
+           <li><a class="dropdown-item" href="public/paginas/misTemas.php">
+             <img src="public/imagenes/folder2.svg" height="20"> MIS TEMAS
+           </a></li>
+           <li><a class="dropdown-item" href="public/paginas/crearTema.php">
+                 <img src="public/imagenes/terminal-plus-black.svg" height="20"> NUEVO TEMA
+               </a>
+           </li>
+         <?php } ?>
+
             <?php
               if($_SESSION['perfil']=='ADMINISTRADOR'){
             ?>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">LISTA ASIGNATURAS</a></li>
+            <li><a class="dropdown-item" href="#">LISTA DE ASIGNATURAS</a></li>
             <li><a class="dropdown-item" href="public/paginas/crearAsignatura.php">
               <img src="public/imagenes/bookmark-plus-black.svg" height="20"> NUEVA ASIGNATURA</a>
             </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="public/paginas/listaUsuarios.php">
+              <img src="public/imagenes/person-list.svg" height="20"> LISTA DE USUARIOS</a></li>
           <?php } ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="app/control/logout.php">
@@ -126,7 +141,6 @@
               <a style="margin-top:10px" href="public/paginas/listaTemas.php?asignatura=<?php echo($det['id']); ?>" class="btn btn-danger position-relative" name="button" >
                 VER TEMAS <span class="badge rounded-pill bg-white text-danger position-absolute top-0 start-100 translate-middle border border-dark">
                               <?php echo($det['temas']); ?>
-                              <span class="visually-hidden">unread messages</span>
                             </span>
               </a>
             </div>

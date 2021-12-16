@@ -1,7 +1,10 @@
 <?php
 $insertTema = "INSERT INTO tema
-                              (titulo, asignatura, contenido, palabras_clave,codigo_youtube,enlace_github,enlace_libro,enlace_1,enlace_2,estado)
-                              VALUES ('$titulo',$asignatura,'$contenido','$palabras_clave','$video','$github','$libro','$enlace1','$enlace2','ACTIVO')";
+                              (titulo, asignatura, contenido, palabras_clave,
+                                codigo_youtube,enlace_github,enlace_libro,enlace_1,
+                                enlace_2,estado,autor)
+                              VALUES ('$titulo',$asignatura,'$contenido','$palabras_clave',
+                                '$video','$github','$libro','$enlace1','$enlace2','SIN PUBLICAR',$autor)";
 
 $resultInsertTema = mysqli_query($con,$insertTema);
 
@@ -13,6 +16,5 @@ if($resultInsertTema === false){
   }
   header('Refresh: 0; URL=../../index.php');
 
-  //sqlsrv_free_stmt($resultInsertAsignatura);//libero array de result
   mysqli_close($con); // cierro conexion
  ?>

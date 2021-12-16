@@ -13,6 +13,7 @@ if(!empty($_POST)){
   $libro=(($_POST['libro']));
   $enlace1=(($_POST['enlace1']));
   $enlace2=(($_POST['enlace2']));
+  $autor=$_SESSION['usuario_id'];
   include("../modelo/insertarTema.php");
 }
 
