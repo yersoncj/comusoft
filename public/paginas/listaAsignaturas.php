@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../imagenes/ing_sistemas.jpg">
-    <title>COMUSOFT | Lista de Usuarios</title>
+    <title>COMUSOFT | Lista de Asignaturas</title>
   </head>
   <body>
     <?php
@@ -13,14 +13,14 @@
     require_once('../../app/conexionBD.php');
     ?>
     <div class="container" align="center" style="margin-top:50px">
-    <h3 class="text-danger">TODOS LOS USUARIOS</h3>
+    <h3 class="text-danger">TODOS LAS ASIGNATURAS</h3>
       <div class="">
-        <table id="temas" class="table table-striped table-bordered" style="width:100%">
+        <table id="asignaturas" class="table table-striped table-bordered" style="width:100%">
           <thead class="bg-secondary text-white">
             <tr>
               <th>NOMBRE</th>
-              <th>CORREO</th>
-              <th>PERFIL</th>
+              <th>SEMESTRE</th>
+              <th>CÓDIGO</th>
               <th>ESTADO</th>
               <th>OPCIONES</th>
             </tr>
@@ -28,16 +28,16 @@
           <tbody>
             <?php
 
-              include ("../../app/modelo/listaUsuarios.php");
-              while($det= mysqli_fetch_array($resultUsuario)){
+              include ("../../app/modelo/listaTodasAsignaturas.php");
+              while($det= mysqli_fetch_array($resultAsignaturas)){
                 echo "<tr>";
                 echo("<td>".$det['nombre']."</td>");
-                echo("<td>".$det['correo']."</td>");
-                echo("<td>".$det['perfil']."</td>");
+                echo("<td>".$det['semestre']."</td>");
+                echo("<td>".$det['codigo']."</td>");
                 echo("<td>".$det['estado']."</td>");
                 echo("<td align='center'>
-                      <a href='editarUsuario.php?usuario=".$det['id']."'><img src='../imagenes/pencil.svg' height='20'></a>
-                      <a href='eliminarUsuario.php?usuario=".$det['id']."'><img src='../imagenes/trash.svg' height='20'></a>
+                      <a href='editarAsignatura.php?asignatura=".$det['id']."'><img src='../imagenes/pencil.svg' height='20'></a>
+                      <a href='eliminarAsignatura.php?asignatura=".$det['id']."'><img src='../imagenes/trash.svg' height='20'></a>
                       </td>");
                 echo "</tr>";
                 }
@@ -46,8 +46,8 @@
           <tfoot class="bg-secondary text-white">
               <tr>
                 <th>NOMBRE</th>
-                <th>CORREO</th>
-                <th>PERFIL</th>
+                <th>SEMESTRE</th>
+                <th>CÓDIGO</th>
                 <th>ESTADO</th>
                 <th>OPCIONES</th>
               </tr>
@@ -62,7 +62,7 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-      $('#temas').dataTable( {
+      $('#asignaturas').dataTable( {
           "language": {
               "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
           },

@@ -46,7 +46,8 @@
           if($_SESSION['perfil']=='ADMINISTRADOR'){
         ?>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">LISTA DE ASIGNATURAS</a></li>
+        <li><a class="dropdown-item" href="listaAsignaturas.php">
+          <img src="../imagenes/safe.svg" height="20"> LISTA DE ASIGNATURAS</a></li>
         <li><a class="dropdown-item" href="crearAsignatura.php">
           <img src="../imagenes/bookmark-plus-black.svg" height="20"> NUEVA ASIGNATURA</a>
         </li>

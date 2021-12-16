@@ -55,7 +55,8 @@
               if($_SESSION['perfil']=='ADMINISTRADOR'){
             ?>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">LISTA DE ASIGNATURAS</a></li>
+            <li><a class="dropdown-item" href="public/paginas/listaAsignaturas.php">
+              <img src="public/imagenes/safe.svg" height="20"> LISTA DE ASIGNATURAS</a></li>
             <li><a class="dropdown-item" href="public/paginas/crearAsignatura.php">
               <img src="public/imagenes/bookmark-plus-black.svg" height="20"> NUEVA ASIGNATURA</a>
             </li>
@@ -87,6 +88,9 @@
           </div>
           <div class="carousel-item" data-bs-interval="4000">
             <img src="public/imagenes/banner3.jpg" class="d-block w-100" height="300">
+          </div>
+          <div class="carousel-item" data-bs-interval="4000">
+            <img src="public/imagenes/banner2.jpg" class="d-block w-100" height="300">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">

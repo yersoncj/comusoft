@@ -15,7 +15,7 @@
     <div class="container" align="center" style="margin-top:50px">
     <h3 class="text-danger">TODOS LOS USUARIOS</h3>
       <div class="">
-        <table id="temas" class="table table-striped table-bordered" style="width:100%">
+        <table id="usuarios" class="table table-striped table-bordered" style="width:100%">
           <thead class="bg-secondary text-white">
             <tr>
               <th>NOMBRE</th>
@@ -62,7 +62,7 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-      $('#temas').dataTable( {
+      $('#usuarios').dataTable( {
           "language": {
               "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
           },
